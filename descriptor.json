@@ -1,0 +1,16 @@
+﻿{
+  "Descriptor": {
+    "UId": "67ba5c3e-5fd4-38d0-e759-2b53b04b3c7c",
+    "Name": "VyatsuEngin",
+    "BPMSoftVersion": "1.2.0",
+    "ModifiedOnUtc": "\/Date(1698060614000)\/",
+    "Maintainer": "Vyatsu",
+    "DependsOn": [
+      {
+        "UId": "fe1effeb-74f2-42c5-b5e1-dfe0313b86bf",
+        "PackageVersion": "1.0.0",
+        "Name": "Constructor"
+      }
+    ]
+  }
+}

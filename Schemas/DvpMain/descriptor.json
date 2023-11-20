@@ -1,0 +1,13 @@
+﻿{
+  "Descriptor": {
+    "UId": "71bc908e-12c4-4767-b32c-207b16b405bb",
+    "Name": "DvpMain",
+    "ModifiedOnUtc": "\/Date(1699274401000)\/",
+    "Parent": {
+      "UId": "1bab9dcf-17d5-49f8-9536-8e0064f1dce0",
+      "Name": "BaseEntity"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Садоводство"
+  }
+}

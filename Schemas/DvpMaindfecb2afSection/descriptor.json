@@ -1,0 +1,13 @@
+﻿{
+  "Descriptor": {
+    "UId": "7b9f1cc9-a6f5-4e7c-a6fb-30002f04ae63",
+    "Name": "DvpMaindfecb2afSection",
+    "ModifiedOnUtc": "\/Date(1699273521000)\/",
+    "Parent": {
+      "UId": "7912fb69-4fee-429f-8b23-93943c35d66d",
+      "Name": "BaseSectionV2"
+    },
+    "ManagerName": "ClientUnitSchemaManager",
+    "Caption": "Схема раздела: \"Садоводство\""
+  }
+}

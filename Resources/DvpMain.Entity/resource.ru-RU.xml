@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources Culture="ru-RU">
+	<Group Type="String">
+		<Items>
+			<Item Name="Caption" Value="Садоводство" />
+			<Item Name="Columns.DvpBoolean1.Caption" Value="Устаревшие или новые посадки" />
+			<Item Name="Columns.DvpDatetime1.Caption" Value="Дата/Время 1" />
+			<Item Name="Columns.DvpInteger1.Caption" Value="Количество деревьев на участке " />
+			<Item Name="Columns.DvpLookup1.Caption" Value="Садовые деревья" />
+			<Item Name="Columns.DvpName.Caption" Value="Название" />
+			<Item Name="Columns.DvpNotes.Caption" Value="Заметки" />
+			<Item Name="Columns.DvpString1.Caption" Value="Название садового товарищества " />
+			<Item Name="Columns.DvpType.Caption" Value="Тип" />
+			<Item Name="EventsProcessSchema.Caption" Value="Бизнес-процесс" />
+		</Items>
+	</Group>
+</Resources>

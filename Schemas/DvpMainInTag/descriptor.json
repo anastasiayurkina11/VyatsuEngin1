@@ -1,0 +1,13 @@
+﻿{
+  "Descriptor": {
+    "UId": "e3b6da7a-f5fa-41b8-8305-2a29f49e78e2",
+    "Name": "DvpMainInTag",
+    "ModifiedOnUtc": "\/Date(1699273552000)\/",
+    "Parent": {
+      "UId": "5894a2b0-51d5-419a-82bb-238674634270",
+      "Name": "BaseEntityInTag"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Тег в записи раздела Садоводство"
+  }
+}

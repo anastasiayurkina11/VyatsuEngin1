@@ -1,0 +1,13 @@
+﻿{
+  "Descriptor": {
+    "UId": "879d5df1-a2ac-40e4-b87c-ee69916a5624",
+    "Name": "DvpMainType1",
+    "ModifiedOnUtc": "\/Date(1699274397000)\/",
+    "Parent": {
+      "UId": "11ab4bcb-9b23-4b6d-9c86-520fae925d75",
+      "Name": "BaseLookup"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Тип объекта раздела \"Садоводство\""
+  }
+}

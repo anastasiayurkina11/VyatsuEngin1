@@ -1,0 +1,13 @@
+﻿{
+  "Descriptor": {
+    "UId": "c7e3d885-57ec-445b-bc18-e35366702502",
+    "Name": "DvpMainInFolder",
+    "ModifiedOnUtc": "\/Date(1699273544000)\/",
+    "Parent": {
+      "UId": "4f63bafb-e9e7-4082-b92e-66b97c14017c",
+      "Name": "BaseItemInFolder"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Садоводство в группе"
+  }
+}

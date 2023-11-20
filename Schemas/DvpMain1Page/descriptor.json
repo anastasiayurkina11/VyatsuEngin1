@@ -1,0 +1,13 @@
+﻿{
+  "Descriptor": {
+    "UId": "f2861f3d-7476-4001-8a7c-46342a630acf",
+    "Name": "DvpMain1Page",
+    "ModifiedOnUtc": "\/Date(1699273527000)\/",
+    "Parent": {
+      "UId": "d62293c0-7f14-44b1-b547-735fb40499cd",
+      "Name": "BaseModulePageV2"
+    },
+    "ManagerName": "ClientUnitSchemaManager",
+    "Caption": "Страница редактирования: \"Садоводство\""
+  }
+}
