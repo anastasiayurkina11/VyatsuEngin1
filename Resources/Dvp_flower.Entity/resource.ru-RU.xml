@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Resources Culture="ru-RU">
+	<Group Type="String">
+		<Items>
+			<Item Name="Caption" Value="Садовые цветы" />
+			<Item Name="Columns.DvpBoolean1.Caption" Value="Цветок? " />
+			<Item Name="Columns.DvpDatetime1.Caption" Value="Дата/Время 1" />
+			<Item Name="Columns.DvpDvpMain.Caption" Value="Садоводство" />
+			<Item Name="Columns.DvpLookup1.Caption" Value="Название цветов" />
+			<Item Name="Columns.DvpName.Caption" Value="Название" />
+			<Item Name="Columns.DvpString1.Caption" Value="Название" />
+			<Item Name="EventsProcessSchema.Caption" Value="Бизнес-процесс" />
+		</Items>
+	</Group>
+</Resources>

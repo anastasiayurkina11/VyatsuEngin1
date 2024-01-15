@@ -1,0 +1,13 @@
+﻿{
+  "Descriptor": {
+    "UId": "7d109579-d6e8-4344-981d-0e69cfc5be27",
+    "Name": "Dvp_name_flower",
+    "ModifiedOnUtc": "\/Date(1700482431000)\/",
+    "Parent": {
+      "UId": "11ab4bcb-9b23-4b6d-9c86-520fae925d75",
+      "Name": "BaseLookup"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Название цветов"
+  }
+}

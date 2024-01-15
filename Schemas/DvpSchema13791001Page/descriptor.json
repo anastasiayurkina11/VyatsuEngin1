@@ -1,0 +1,13 @@
+﻿{
+  "Descriptor": {
+    "UId": "64c9699e-b817-4ecd-b87f-33c9980567ae",
+    "Name": "DvpSchema13791001Page",
+    "ModifiedOnUtc": "\/Date(1700482499000)\/",
+    "Parent": {
+      "UId": "d3cc497c-f286-4f13-99c1-751c468733c0",
+      "Name": "BasePageV2"
+    },
+    "ManagerName": "ClientUnitSchemaManager",
+    "Caption": "Садовые цветы"
+  }
+}

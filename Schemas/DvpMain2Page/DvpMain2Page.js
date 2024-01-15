@@ -1,7 +1,23 @@
 define("DvpMain2Page", [], function() {
 	return {
 		entitySchemaName: "DvpMain",
-		attributes: {},
+		attributes: {
+			"IsNew": {
+				dataValueType: BPMSoft.DataValueType.BOOLEAN,
+				type: BPMSoft.ViewModelColumnType.VIRTUAL_COLUMN,
+				value: false
+			},
+			"VisibleButton": {
+				dataValueType: BPMSoft.DataValueType.BOOLEAN,
+				type: BPMSoft.ViewModelColumnType.VIRTUAL_COLUMN,
+				value: false
+			},
+			 "NumberOfRecords": {
+				dataValueType: BPMSoft.DataValueType.INTEGER,
+				type: BPMSoft.ViewModelColumnType.VIRTUAL_COLUMN,
+				value: 0
+			}
+		},
 		modules: /**SCHEMA_MODULES*/{}/**SCHEMA_MODULES*/,
 		details: /**SCHEMA_DETAILS*/{
 			"Files": {
@@ -10,6 +26,15 @@ define("DvpMain2Page", [], function() {
 				"filter": {
 					"masterColumn": "Id",
 					"detailColumn": "DvpMain"
+				}
+			},
+			
+			"DvpSchemaFlowers": {
+				"schemaName": "DvpSchema22fe91f1Detail",
+				"entitySchemaName": "Dvp_flower",
+				"filter": {
+					"detailColumn": "DvpDvpMain",
+					"masterColumn": "Id"
 				}
 			}
 		}/**SCHEMA_DETAILS*/,
@@ -83,9 +108,248 @@ define("DvpMain2Page", [], function() {
 				}
 			}
 		}/**SCHEMA_BUSINESS_RULES*/,
-		methods: {},
+		methods: {
+		
+		save: function(){
+			//this.isNew - new card
+			this.set("IsNew",this.isNew);
+			this.callParent(arguments);
+		},
+			
+		hideButton: function(){
+			//this.callParent(arguments);
+			this.set("VisibleButton",false);
+			
+			console.log('метод hideButton');
+		},
+		showButton: function(){
+			//this.callParent(arguments);
+			this.set("VisibleButton",true);
+			console.log('метод showButton');
+		},
+		/*
+		onSaved: function() {
+			this.callParent(arguments);
+			
+			console.log('метод onSaved');
+			
+			console.log(this.get(''));
+			
+			if (this.get("IsNew")){
+				console.log('Сохранили новую карточку: ' + this.get('Id'));
+				
+			}
+		},
+		*/
+			onSaved: function() {
+        this.callParent(arguments);
+
+        console.log('метод onSaved');
+
+        if (this.get("IsNew")){
+        console.log('Сохранили новую карточку: ' + this.get('Id'));
+        this.addDetail(this, 0);
+        }else{
+         this.compldexAddDetail(this);
+        //  this.showNumberOfRecords(this)
+        }
+      },
+      showNumberOfRecords:function(thisObject) {
+        thisObject.set("NumberOfRecords", 0);
+        var esq = this.Ext.create(BPMSoft.EntitySchemaQuery, {
+          rootSchemaName: "Dvp_flower"
+        });
+        esq.addColumn("DvpDvpMain");
+        var filters = this.Ext.create("BPMSoft.FilterGroup");
+            filters.addItem(esq.createColumnFilterWithParameter(BPMSoft.ComparisonType.NOT_EQUAL, "DvpDvpMain",
+              thisObject.get("Id")));
+               esq.filters = filters;
+        esq.execute(function(response) {
+          if (response.success) {
+            if (response.collection.collection) {
+              
+                          var total = 0
+                          var list  = []
+                          var mega =  response.collection.collection.items
+						  for (let i = 0; i< mega.length; i++){
+                             if(!list.includes(mega[i].get("DvpDvpMain").value)){
+                                 list.push(mega[i].get("DvpDvpMain").value)
+                             }
+                              
+                          }
+                          console.log(list)
+                           debugger
+                          for(var i = 0; i< list.length; i++){
+                              var count = 0
+                for(var j = 0; j < mega.length; j++){
+                                
+                                if(list[i] === mega[j].get("DvpDvpMain").value){
+                                    count++
+                                }
+                              }
+                              if(count === 3){
+                                  total++
+                              }
+                          }
+
+              
+               BPMSoft.showInformation(
+                Ext.String.format(
+                thisObject.get("Resources.Strings.SuperMessage"),
+                total.toLocaleString())
+
+              );   
+                          
+                          
+                          console.log(total)
+                          console.log(response.collection.collection.items);
+                      }}})
+        
+        
+      },
+      compldexAddDetail: function(thisObject) {
+        var esq = this.Ext.create(BPMSoft.EntitySchemaQuery, {
+          rootSchemaName: "Dvp_flower"
+        });
+        esq.addColumn("DvpDvpMain");
+            var filters = this.Ext.create("BPMSoft.FilterGroup");
+            filters.addItem(esq.createColumnFilterWithParameter(BPMSoft.ComparisonType.EQUAL, "DvpDvpMain",
+              thisObject.get("Id")));
+               esq.filters = filters;
+              thisObject.set("Count", 0);
+        esq.execute(function(response) {
+          debugger
+        
+          if (response.success) {
+            if (response.collection.collection) {
+              var count = response.collection.collection.items.length;
+              thisObject.set("Count", count);
+              console.log(count);
+              console.log(response.collection.collection.items);
+              
+              
+              if(thisObject.get("Count") > 3){
+                thisObject.deleteAllDetails(thisObject);  
+                  count = 1;
+              }else{
+                thisObject.addDetail(thisObject, thisObject.get("Count"));      
+                   count++;
+              }   
+              
+              if(count === 3){
+                thisObject.showNumberOfRecords(thisObject)
+              }
+            }
+          }
+        }, this);
+        
+      },
+      
+      
+      addDetail: function(thisObject, count) {
+        var insert = Ext.create('BPMSoft.InsertQuery', {
+                  rootSchemaName: 'Dvp_flower'
+                });
+                insert.setParameterValue('Id', "",
+                  BPMSoft.DataValueType.GUID);
+insert.setParameterValue('DvpName', "AutoGenerated " + count,
+                  BPMSoft.DataValueType.TEXT);
+
+insert.setParameterValue('DvpDvpMain', thisObject.get("Id"),
+                  BPMSoft.DataValueType.GUID);
+                insert.execute();
+        console.log("addDetail");
+        
+      },
+      deleteAllDetails: function(thisObject) {
+        console.log("deleteAllDetails")
+        var query1 = Ext.create("BPMSoft.DeleteQuery", {
+          rootSchemaName: 'Dvp_flower'
+        });
+
+      var filter = BPMSoft.createColumnFilterWithParameter(BPMSoft.ComparisonType.EQUAL, "DvpDvpMain", thisObject.get("Id"));
+      query1.filters.addItem(filter);
+
+      query1.execute( function(response){
+        thisObject.addDetail(thisObject, thisObject.get("Count"));
+      });
+	  },
+		getActions: function() {
+				/* Вызов базовой реализации метода для получения проиниализированных действий страницы. */
+				var actions = this.callParent(arguments);
+				/* Добавление линии-разделителя между вкладками действий. */
+				actions.addItem(this.getButtonMenuItem({
+					Type: "BPMSoft.MenuSeparator",
+					Caption: ""
+				}));
+				/* Добавление кастомного пункта в список действий. */
+				actions.addItem(this.getButtonMenuItem({
+					/* Привязка заголовка действия к локализуемой строке. */
+					"Tag": "myActionClick",
+					"Caption": {"bindTo": "Resources.Strings.MyActionCaption"},	
+					"Enabled": {"bindTo": "getActionEnabled"},
+					"Click" : {"bindTo": "showButton"}
+				}));
+			
+				/* Возвращение коллекции действий страницы. */
+				return actions;
+			},
+			
+			
+				  
+			getActionEnabled: function(){
+        		//this.set("visible", true)
+				return true;
+      		},
+		
+      
+      		myActionClick: function(){
+        		/**BPMSoft.showInformation(
+          			Ext.String.format(
+            		this.get("Resources.Strings.MyActionMessage"),
+            		new Date().toLocaleString())
+					
+        );   */
+				//this.set("visible", false)
+				return true;
+				
+      },
+	},
 		dataModels: /**SCHEMA_DATA_MODELS*/{}/**SCHEMA_DATA_MODELS*/,
 		diff: /**SCHEMA_DIFF*/[
+			{
+                         /* Выполняется операция добавления элемента на страницу. */
+                         "operation": "insert",
+                         /* Наименование родительского контейнера, в который добавляется кнопка. */
+                         "parentName": "LeftContainer",
+                         /* Кнопка добавляется в коллекцию элементов родительского элемента. */
+                         "propertyName": "items",
+                         /* Наименование кнопки. */
+                         "name": "VisibleButton1",
+                         "values": {
+                               /* Тип добавляемого элемента — кнопка. */
+                               "itemType": BPMSoft.ViewItemType.BUTTON,
+                               /* Привязка заголовка кнопки к локализуемой строке схемы. */
+                               "caption": { bindTo: "Resources.Strings.BpmVisibleButton" },
+                               /* Привязка обработчика события нажатия кнопки. */
+                               "click": { bindTo: "hideButton" },
+                               /* Привязка свойства доступности кнопки. */
+                              "visible": { bindTo: "VisibleButton" },
+                               /* Стиль отображения кнопки. */
+                               "style": BPMSoft.controls.ButtonEnums.style.DEFAULT,
+							 /* Настройка расположения кнопки. */
+							   "layout": {
+							 /* Номер колонки. */
+							   		"column": 13, 
+							 /* Номер строки. */
+							   		"rowSpan": 2, 
+							 /* Количество занимаемых колонок. */
+							   		"colSpan": 30,
+								    "layoutName": "ProfileContainer"
+							   }
+
+                         }
+                   },
 			{
 				"operation": "insert",
 				"name": "DvpName53a02db2-54f9-402f-9fd9-9e7414f4d2f4",
@@ -282,6 +546,18 @@ define("DvpMain2Page", [], function() {
 				"propertyName": "items",
 				"index": 0
 			},
+			
+			{
+				"operation": "insert",
+				"name": "DvpSchemaFlowers",
+				"values": {
+					"itemType": 2,
+					"markerValue": "added-detail"
+				},
+				"parentName": "NotesAndFilesTab",
+				"propertyName": "items",
+				"index": 3
+			},
 			{
 				"operation": "merge",
 				"name": "ESNTab",
@@ -292,3 +568,6 @@ define("DvpMain2Page", [], function() {
 		]/**SCHEMA_DIFF*/
 	};
 });
+
+
+

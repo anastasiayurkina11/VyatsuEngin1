@@ -1,0 +1,13 @@
+﻿{
+  "Descriptor": {
+    "UId": "328b8712-d155-4793-8c6b-e4fe5f6b6eb2",
+    "Name": "Dvp_flower",
+    "ModifiedOnUtc": "\/Date(1700482435000)\/",
+    "Parent": {
+      "UId": "1bab9dcf-17d5-49f8-9536-8e0064f1dce0",
+      "Name": "BaseEntity"
+    },
+    "ManagerName": "EntitySchemaManager",
+    "Caption": "Садовые цветы"
+  }
+}
